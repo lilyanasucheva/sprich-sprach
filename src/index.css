@@ -1,13 +1,261 @@
+/* #02AED6 */
+/* #11CD88 */
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* Styles for the header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
+
+.content {
+  margin-left: 240px;
+  padding: 20px;
+}
+
+.header-logo img {
+  width: 240px;
+  height: auto;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  position: relative; /* Ensure position:relative for dropdown positioning */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px); /* Position dropdown below button */
+  right: 0; /* Align right edge with button's right edge */
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.language-dropdown {
+  margin-left: 20px;
+}
+
+/* Hide the language dropdown when user dropdown is active */
+.hidden {
+  display: none;
+}
+
+#lesson h2 {
+  margin-bottom: 10px;
+}
+
+#lesson h3 {
+  margin-top: 20px;
+}
+
+#lesson p {
+  margin-bottom: 10px;
+}
+
+#lesson ul {
+  padding-left: 20px;
+}
+
+#lesson ul li {
+  margin-bottom: 5px;
+}
+
+.user-icon img {
+  width: 30px; /* Adjust size as needed */
+  height: 30px; /* Adjust size as needed */
+  border-radius: 50%; /* Make it round */
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-width: 400px;
+  max-width: 400px;
+}
+
+.form-group {
+  display: block;
+  margin-bottom: 24px;
+}
+
+button {
+  display: inline-block;
+  margin-bottom: 0;
+  border: 1px solid transparent;
+  background-color: transparent;
+  background-image: none;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 400;
+  cursor: pointer;
+  touch-action: manipulation;
+  text-decoration: none;
+  padding: 5px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 1px;
+  margin: 4px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  padding: 0;
+}
+
+button.primary {
+  margin-top: 10px;
+  background-color: #058192;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.default {
+  margin-top: 10px;
+  border-color: #058192;
+  color: #058192;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.primary:hover {
+  background-color: #035a66;
+}
+
+input,
+select {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(1, 31, 61);
+  border-radius: 0px;
+  border-width: 0px;
+  box-shadow: rgb(210, 217, 224) 0px 0px 0px 1px inset;
+  box-sizing: border-box;
+  color: rgb(1, 31, 61);
+  cursor: text;
+  display: block;
+  font-weight: 400;
+  height: 32px;
+  letter-spacing: normal;
+  line-height: 20px;
+  padding-block-end: 5px;
+  padding-block-start: 5px;
+  padding-bottom: 5px;
+  padding-inline-end: 8px;
+  padding-inline-start: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 5px;
+  text-align: start;
+  width: 100%;
+  word-spacing: 0px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  max-width: 100%;
+  color: rgb(25, 56, 87);
+  text-transform: none;
+  font-weight: 500;
+  font-size: 14ps;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.navigator {
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 240px;
+  padding-top: 0;
+  padding-bottom: 24px;
+  color: rgb(1, 31, 61);
+  background: rgb(249, 250, 251);
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-flow: column nowrap;
+  transition: left 0.4s ease-in-out;
+}
+
+.lessonLink:hover {
+  outline: 2px solid #058192;
+  outline-offset: -2px;
+}
+
+.lessonLink button {
+  width: 100%;
+  text-align: left;
+}
+
+.lessonLink.active {
+  background-color: rgb(231, 235, 238);
+  border-left-color: #058192;
+  border-left-style: solid;
+  border-left-width: 4px;
+  outline: 2px solid #058192;
+  outline-offset: -2px;
+}
+
+.lessonLink.active button {
+  font-weight: 800;
 }

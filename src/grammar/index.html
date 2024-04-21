@@ -1,0 +1,42 @@
+<div id="language-menu">
+  <label for="language-select">Изберете език:</label>
+  <select id="language-select" onchange="changeLanguage()">
+    <option value="bg">Български</option>
+    <option value="en">English</option>
+  </select>
+</div>
+
+<div id="lesson">
+  <div id="module1">
+    <h2>Предлози за място</h2>
+    <h3>Dativ</h3>
+    <p>Аз работя в къщи!</p>
+    <h3>Akkusativ</h3>
+    <p>Аз отивам в къщата.</p>
+    <button onclick="practiceDativ()">Упражнение за Dativ</button>
+    <button onclick="practiceAkkusativ()">Упражнение за Akkusativ</button>
+  </div>
+</div>
+
+<script>
+  function changeLanguage() {
+    var languageSelect = document.getElementById("language-select");
+    var selectedLanguage = languageSelect.value;
+
+    if (selectedLanguage === "en") {
+      // Redirect to the English version of the page or switch content dynamically
+      alert("English version not available yet."); // Placeholder alert
+      // You can redirect to an English version of the page or switch content dynamically here
+    }
+  }
+
+  function practiceDativ() {
+    // Implement practice functionality for Dativ module
+    console.log("Упражнение за Dativ модул");
+  }
+
+  function practiceAkkusativ() {
+    // Implement practice functionality for Akkusativ module
+    console.log("Упражнение за Akkusativ модул");
+  }
+</script>

@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import GrammarModule from "./grammar/index";
+import Header from "./header/index";
+import HomePage from "./home/index";
+import Navigation from "./nav/index";
+import SpeakingModule from "./speaking/index";
 
 function App() {
+  const [activeLesson, setActiveLesson] = useState(null);
+
+  const handleLessonClick = (lesson) => {
+    setActiveLesson(lesson);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Navigation
+          activeLesson={activeLesson}
+          onLessonClick={handleLessonClick}
+        />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/grammar"
+            element={<GrammarModule activeLesson={activeLesson} />}
+          />
+          <Route path="/speaking" element={<SpeakingModule />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
