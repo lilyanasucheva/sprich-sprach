@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function SpeakingModule() {
-  const [text, setText] = useState("");
+  const [dialog, setDialog] = useState([]);
   const [voices, setVoices] = useState([]);
+  const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
 
   useEffect(() => {
     function setVoiceList() {
@@ -16,20 +17,29 @@ function SpeakingModule() {
     }
   }, []);
 
-  const speak = (accent) => {
+  const prompts = [
+    "Hast du das Buch gesehen, das auf dem Tisch liegt?",
+    "Und was ist das auf dem Stuhl?",
+    "Wegen wessen Abwesenheit wurde die Party abgesagt?",
+    "Trotz wessen Bemühungen hat er die Prüfung nicht bestanden?",
+  ];
+
+  const speakPrompt = () => {
+    if (currentPromptIndex < prompts.length) {
+      speak(prompts[currentPromptIndex], "german");
+    }
+  };
+
+  const handleRespond = (response) => {
+    setDialog([...dialog, { prompt: prompts[currentPromptIndex], response }]);
+    setCurrentPromptIndex(currentPromptIndex + 1);
+  };
+
+  const speak = (text, accent) => {
     let voice = null;
     switch (accent) {
-      case "english":
-        voice = voices.find(
-          (voice) =>
-            voice.lang.startsWith("en-GB") || voice.lang.startsWith("en-US")
-        );
-        break;
-      case "indian":
-        voice = voices.find((voice) => voice.lang.startsWith("en-IN"));
-        break;
-      case "funny":
-        voice = voices[Math.floor(Math.random() * voices.length)];
+      case "german":
+        voice = voices.find((voice) => voice.lang.startsWith("de"));
         break;
       default:
         break;
@@ -44,51 +54,26 @@ function SpeakingModule() {
     }
   };
 
-  const handleSpeech = () => {
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert("Speech recognition not available. Please use Google Chrome.");
-      return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.continuous = false;
-
-    recognition.onresult = (event) => {
-      setText(event.results[0][0].transcript);
-    };
-
-    recognition.start();
-  };
-
-  const buttonStyle = {
-    margin: "10px",
-    padding: "10px 20px",
-    fontSize: "16px",
-    borderRadius: "5px",
-    border: "none",
-    cursor: "pointer",
-    backgroundColor: "#4CAF50",
-    color: "white",
-  };
-
   return (
-    <div style={{ textAlign: "center", marginTop: "20px" }}>
-      <button style={buttonStyle} onClick={handleSpeech}>
-        Talk
-      </button>
-      <button style={buttonStyle} onClick={() => speak("english")}>
-        Repeat in English
-      </button>
-      <button style={buttonStyle} onClick={() => speak("indian")}>
-        Repeat in Indian
-      </button>
-      <button style={buttonStyle} onClick={() => speak("funny")}>
-        Repeat in Funny Voice
-      </button>
-      <p style={{ marginTop: "20px" }}>{text}</p>
-
+    <div class="content" style={{ textAlign: "center", marginTop: "20px" }}>
+      <div>
+        {dialog.map((item, index) => (
+          <div key={index}>
+            <p>{`Paul: ${item.prompt}`}</p>
+            <p>{`Anna: ${item.response}`}</p>
+          </div>
+        ))}
+      </div>
+      {currentPromptIndex < prompts.length && (
+        <div>
+          <button class="primary" onClick={speakPrompt}>
+            Speak Prompt
+          </button>
+          <Link to="#" onClick={() => handleRespond("User's response")}>
+            <button class="primary">Respond</button>
+          </Link>
+        </div>
+      )}
       <Link to="/grammar">
         <button className="default">Back to grammar</button>
       </Link>

@@ -259,3 +259,36 @@ label {
 .lessonLink.active button {
   font-weight: 800;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #058192;
+  padding: 15px 5px;
+  color: white;
+  font-weight: 800;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.blue {
+  color: #058192;
+  font-weight: 600;
+}

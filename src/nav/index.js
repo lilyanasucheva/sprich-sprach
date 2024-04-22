@@ -11,17 +11,17 @@ function Navigation({ activeLesson, onLessonClick }) {
       <div className="lessonsList">
         <Link to="/grammar">
           <div className={`lessonLink ${activeLesson === 1 ? "active" : ""}`}>
-            <button onClick={() => onLessonClick(1)}>Lesson 1</button>
+            <button onClick={() => onLessonClick(1)}>Падежи</button>
           </div>
         </Link>
         <Link to="/grammar">
           <div className={`lessonLink ${activeLesson === 2 ? "active" : ""}`}>
-            <button onClick={() => onLessonClick(2)}>Lesson 2</button>
+            <button onClick={() => onLessonClick(2)}>Предлози за място</button>
           </div>
         </Link>
         <Link to="/grammar">
           <div className={`lessonLink ${activeLesson === 3 ? "active" : ""}`}>
-            <button onClick={() => onLessonClick(3)}>Lesson 3</button>
+            <button onClick={() => onLessonClick(3)}>Модални глаголи</button>
           </div>
         </Link>
       </div>
